@@ -28,18 +28,18 @@
             padding: 0;
             height: 100%;
             width: 100%;
-            overflow: hidden;
+            overflow: hidden; /* Mencegah scroll di level body */
             font-family: 'Fredoka', sans-serif;
             background-color: #e0f2fe;
         }
         .custom-scrollbar::-webkit-scrollbar { width: 8px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.4); border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.3); border-radius: 10px; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.2); border-radius: 10px; }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.4); }
         
-        /* IFP Scaled Scrollbar */
-        @media (min-width: 1536px) {
-            .custom-scrollbar::-webkit-scrollbar { width: 14px; }
+        /* Scaled Scrollbar untuk layar besar */
+        @media (min-width: 1280px) {
+            .custom-scrollbar::-webkit-scrollbar { width: 12px; }
         }
         
         @keyframes bounce-slow {
@@ -432,18 +432,18 @@
                   <audio ref={audioRef} src={BACKSONG_URL} loop />
                   <div className="fixed inset-0 bg-black/10 pointer-events-none z-0 transition-opacity duration-700"></div>
 
-                  <div className="w-full xl:w-[98%] max-w-[1600px] mx-auto h-full shadow-2xl bg-white/30 backdrop-blur-sm flex flex-col relative z-10 border-x border-white/40">
+                  <div className="flex flex-col w-full max-w-[1600px] mx-auto h-full shadow-2xl bg-white/30 backdrop-blur-sm relative z-10 border-x border-white/40">
                     
                     {/* Header Top Bar */}
                     <div className="flex-none z-40 bg-gradient-to-r from-sky-400 to-teal-400 p-2 md:p-3 xl:p-4 text-white flex justify-between items-center shadow-md rounded-b-xl mx-2 mt-2 gap-2">
                         {/* Kiri: Logo & Menu */}
                         <div className="flex items-center gap-2 md:gap-3 xl:gap-4 flex-shrink-0 w-1/4">
-                             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-1.5 xl:p-2.5 hover:bg-white/20 rounded-full transition">
-                               {isMenuOpen ? <Icons.X className="w-5 h-5 md:w-6 md:h-6 xl:w-8 xl:h-8" /> : <Icons.Menu className="w-5 h-5 md:w-6 md:h-6 xl:w-8 xl:h-8" />}
+                             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-1.5 xl:p-2 hover:bg-white/20 rounded-full transition">
+                               {isMenuOpen ? <Icons.X className="w-6 h-6 xl:w-8 xl:h-8" /> : <Icons.Menu className="w-6 h-6 xl:w-8 xl:h-8" />}
                              </button>
-                             <img src={LOGO_IMAGE_URL} alt="Logo" className="w-8 h-8 xl:w-12 xl:h-12 object-contain drop-shadow-md hidden md:block" />
+                             <img src={LOGO_IMAGE_URL} alt="Logo" className="w-8 h-8 xl:w-12 xl:h-12 object-contain drop-shadow-md hidden sm:block" />
                              <div className="hidden lg:flex flex-col">
-                               <h1 className="font-bold text-lg xl:text-2xl leading-none drop-shadow-md tracking-wide">Petualangan Bhinneka</h1>
+                               <h1 className="font-bold text-lg xl:text-xl 2xl:text-2xl leading-none drop-shadow-md tracking-wide">Petualangan Bhinneka</h1>
                              </div>
                         </div>
 
@@ -451,31 +451,31 @@
                         <div className="flex-1 flex flex-col items-center justify-center text-center overflow-hidden">
                             {currentIslandName ? (
                                 <>
-                                    <div className="flex items-center bg-white/20 px-3 md:px-5 py-1 xl:py-2 rounded-full text-xs md:text-base xl:text-xl font-bold text-white border border-white/30 shadow-inner whitespace-nowrap">
+                                    <div className="flex items-center bg-white/20 px-3 md:px-5 py-1 xl:py-1.5 rounded-full text-xs md:text-base xl:text-xl font-bold text-white border border-white/30 shadow-inner whitespace-nowrap">
                                         <span className="mr-1 xl:mr-2 text-base md:text-xl xl:text-2xl">{currentIcon}</span> {currentIslandName}
                                     </div>
-                                    <div className="text-[10px] md:text-xs xl:text-base font-bold text-sky-100 mt-1 xl:mt-2 bg-black/20 px-3 md:px-5 py-0.5 xl:py-1 rounded-full truncate max-w-full">
+                                    <div className="text-[10px] md:text-xs xl:text-sm font-bold text-sky-100 mt-1 bg-black/20 px-3 md:px-5 py-0.5 xl:py-1 rounded-full truncate max-w-full">
                                         {currentMission}
                                     </div>
                                 </>
                             ) : (
                                 <div className="flex flex-col items-center lg:hidden">
-                                    <h1 className="font-bold text-base md:text-xl leading-none drop-shadow-md tracking-wide">Petualangan Bhinneka</h1>
-                                    {playerName && <div className="text-[10px] md:text-xs text-sky-100 font-medium mt-1">Halo, {playerName}!</div>}
+                                    <h1 className="font-bold text-base leading-none drop-shadow-md tracking-wide">Petualangan Bhinneka</h1>
+                                    {playerName && <div className="text-[10px] text-sky-100 font-medium mt-1">Halo, {playerName}!</div>}
                                 </div>
                             )}
                         </div>
 
                         {/* Kanan: Musik & Bintang */}
                         <div className="flex items-center gap-2 md:gap-3 xl:gap-5 flex-shrink-0 w-1/4 justify-end">
-                            <button onClick={toggleMusic} className="p-1.5 xl:p-2.5 hover:bg-white/20 rounded-full transition">
+                            <button onClick={toggleMusic} className="p-1.5 xl:p-2 hover:bg-white/20 rounded-full transition">
                                {isMusicPlaying ? <Icons.Volume2 className="w-5 h-5 md:w-6 md:h-6 xl:w-8 xl:h-8"/> : <Icons.VolumeX className="w-5 h-5 md:w-6 md:h-6 xl:w-8 xl:h-8"/>}
                             </button>
-                            <div className="flex items-center gap-2 bg-black/20 px-3 py-1.5 xl:px-5 xl:py-2.5 rounded-full text-sm md:text-base xl:text-xl border border-white/20 shadow-inner">
-                              <Icons.Star className="w-4 h-4 md:w-5 md:h-5 xl:w-7 xl:h-7 text-yellow-300 fill-yellow-300 animate-pulse" />
+                            <div className="flex items-center gap-2 bg-black/20 px-3 py-1.5 xl:px-5 xl:py-2 rounded-full text-sm md:text-base xl:text-xl border border-white/20 shadow-inner">
+                              <Icons.Star className="w-4 h-4 md:w-5 md:h-5 xl:w-6 xl:h-6 text-yellow-300 fill-yellow-300 animate-pulse" />
                               <span className="font-bold text-white">{correctCount} / 21</span>
                             </div>
-                            <button onClick={toggleFullscreen} className="p-1.5 xl:p-2.5 hover:bg-white/20 rounded-full hidden sm:block transition">
+                            <button onClick={toggleFullscreen} className="p-1.5 xl:p-2 hover:bg-white/20 rounded-full hidden sm:block transition">
                                {isFullscreen ? <Icons.Minimize className="w-5 h-5 md:w-6 md:h-6 xl:w-8 xl:h-8"/> : <Icons.Maximize className="w-5 h-5 md:w-6 md:h-6 xl:w-8 xl:h-8"/>}
                             </button>
                         </div>
@@ -483,26 +483,26 @@
 
                     {/* Menu Overlay */}
                     {isMenuOpen && (
-                      <div className="absolute top-[80px] md:top-[90px] xl:top-[110px] left-2 w-72 xl:w-96 bg-white/95 backdrop-blur-md shadow-2xl z-50 rounded-xl xl:rounded-2xl border-2 border-sky-100 animate-fade-in overflow-hidden">
-                          <div className="p-4 xl:p-6 space-y-3 xl:space-y-4">
+                      <div className="absolute top-[70px] md:top-[90px] xl:top-[100px] left-2 w-64 md:w-72 xl:w-80 bg-white/95 backdrop-blur-md shadow-2xl z-50 rounded-xl xl:rounded-2xl border-2 border-sky-100 animate-fade-in overflow-hidden">
+                          <div className="p-4 xl:p-5 space-y-3 xl:space-y-4">
                             <div className="font-bold text-sky-600 uppercase text-xs xl:text-sm tracking-wider mb-2 border-b pb-2">Navigasi</div>
-                            <button onClick={() => {setCurrentView('map'); setIsMenuOpen(false)}} className="w-full text-left p-3 xl:p-4 rounded-lg flex items-center gap-3 xl:gap-4 hover:bg-sky-50 text-gray-700 font-bold text-base xl:text-xl">
-                               <Icons.Map className="w-5 h-5 xl:w-7 xl:h-7 text-sky-500" /> Peta Perjalanan
+                            <button onClick={() => {setCurrentView('map'); setIsMenuOpen(false)}} className="w-full text-left p-3 rounded-lg flex items-center gap-3 xl:gap-4 hover:bg-sky-50 text-gray-700 font-bold text-sm md:text-base xl:text-lg">
+                               <Icons.Map className="w-5 h-5 xl:w-6 xl:h-6 text-sky-500" /> Peta Perjalanan
                             </button>
-                            <button onClick={() => {setCurrentView('intro'); setIsMenuOpen(false)}} className="w-full text-left p-3 xl:p-4 rounded-lg flex items-center gap-3 xl:gap-4 hover:bg-sky-50 text-gray-700 font-bold text-base xl:text-xl">
-                               <Icons.Home className="w-5 h-5 xl:w-7 xl:h-7 text-sky-500" /> Halaman Utama
+                            <button onClick={() => {setCurrentView('intro'); setIsMenuOpen(false)}} className="w-full text-left p-3 rounded-lg flex items-center gap-3 xl:gap-4 hover:bg-sky-50 text-gray-700 font-bold text-sm md:text-base xl:text-lg">
+                               <Icons.Home className="w-5 h-5 xl:w-6 xl:h-6 text-sky-500" /> Halaman Utama
                             </button>
                             <hr className="my-2 border-gray-100" />
-                            <button onClick={() => window.location.reload()} className="w-full text-left p-3 xl:p-4 rounded-lg flex items-center gap-3 xl:gap-4 text-red-500 hover:bg-red-50 font-bold text-base xl:text-xl">
-                              <Icons.RefreshCcw className="w-5 h-5 xl:w-7 xl:h-7" /> Mulai Ulang Game
+                            <button onClick={() => window.location.reload()} className="w-full text-left p-3 rounded-lg flex items-center gap-3 xl:gap-4 text-red-500 hover:bg-red-50 font-bold text-sm md:text-base xl:text-lg">
+                              <Icons.RefreshCcw className="w-5 h-5 xl:w-6 xl:h-6" /> Mulai Ulang Game
                             </button>
                           </div>
                       </div>
                     )}
 
-                    {/* Content Area flex-grow, min-h-0 is essential to prevent flex items from overflowing */}
-                    <main className="flex-grow flex flex-col min-h-0 overflow-y-auto">
-                        <div className={`w-full max-w-7xl 2xl:max-w-full mx-auto h-full p-3 md:p-6 xl:p-8 ${currentView === 'intro' || currentView === 'objectives' || currentView === 'map' ? 'flex items-center justify-center' : ''}`}>
+                    {/* Content Area -> FLEX-GROW, MIN-H-0, OVERFLOW-Y-AUTO */}
+                    <main className="flex-grow flex flex-col min-h-0 overflow-y-auto custom-scrollbar relative">
+                        <div className={`flex flex-col flex-grow w-full mx-auto p-2 md:p-4 xl:p-6 ${currentView === 'intro' || currentView === 'objectives' || currentView === 'map' ? 'justify-center items-center' : ''}`}>
                             {currentView === 'intro' && <IntroScreen onStart={handleStartGame} />}
                             {currentView === 'objectives' && <ObjectivesScreen onNext={() => setCurrentView('map')} />}
                             {currentView === 'map' && <MapScreen unlockedLevel={unlockedLevel} onLevelSelect={startLevel} onFinish={() => setCurrentView('end')} isCompleted={unlockedLevel > 5} />}
@@ -536,58 +536,58 @@
             };
 
             return (
-                <div className="w-full h-full max-h-[90vh] flex flex-col justify-center items-center gap-4 xl:gap-8 animate-fade-in py-4">
-                  <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 xl:gap-10 bg-white/85 p-4 md:p-6 xl:p-8 rounded-3xl backdrop-blur-sm shadow-md border border-white/50 w-full max-w-4xl xl:max-w-6xl">
-                    <img src={LOGO_IMAGE_URL} alt="Logo" className="w-24 md:w-32 xl:w-48 h-auto object-contain animate-bounce-slow" />
+                <div className="w-full flex flex-col justify-center items-center gap-4 xl:gap-6 animate-fade-in flex-1 min-h-0">
+                  <div className="flex flex-col md:flex-row items-center justify-center gap-4 xl:gap-8 bg-white/85 p-4 xl:p-6 rounded-3xl backdrop-blur-sm shadow-md border border-white/50 w-full max-w-4xl xl:max-w-5xl">
+                    <img src={LOGO_IMAGE_URL} alt="Logo" className="w-24 md:w-32 xl:w-40 h-auto object-contain animate-bounce-slow" />
                     <div className="text-center md:text-left">
-                        <h2 className="text-4xl md:text-6xl xl:text-7xl font-extrabold text-sky-800 drop-shadow-sm leading-tight">Petualangan Bhinneka</h2>
-                        <div className="flex flex-col sm:flex-row items-center gap-3 mt-3 xl:mt-5">
-                            <p className="text-base md:text-lg xl:text-2xl text-teal-600 font-bold bg-teal-50 inline-block px-5 py-1.5 xl:py-2.5 rounded-full border border-teal-200">Jadilah Wisatawan Cilik Nusantara!</p>
-                            <p className="text-base md:text-lg xl:text-2xl text-purple-600 font-bold bg-purple-50 inline-block px-5 py-1.5 xl:py-2.5 rounded-full border border-purple-200">Fase C - Kelas 5 SD</p>
+                        <h2 className="text-4xl md:text-5xl xl:text-6xl font-extrabold text-sky-800 drop-shadow-sm leading-tight">Petualangan Bhinneka</h2>
+                        <div className="flex flex-col sm:flex-row items-center gap-2 mt-3 xl:mt-4">
+                            <p className="text-sm md:text-base xl:text-xl text-teal-600 font-bold bg-teal-50 inline-block px-4 py-1.5 xl:py-2 rounded-full border border-teal-200">Jadilah Wisatawan Cilik Nusantara!</p>
+                            <p className="text-sm md:text-base xl:text-xl text-purple-600 font-bold bg-purple-50 inline-block px-4 py-1.5 xl:py-2 rounded-full border border-purple-200">Fase C - Kelas 5 SD</p>
                         </div>
                     </div>
                   </div>
 
-                  <div className="flex flex-col lg:flex-row w-full max-w-4xl xl:max-w-6xl gap-5 xl:gap-8 h-auto">
-                    <div className="flex-1 bg-white/95 p-5 md:p-8 xl:p-10 rounded-3xl shadow-lg border-2 border-sky-200 backdrop-blur-md flex flex-col justify-center">
-                        <p className="text-gray-700 text-sm md:text-base lg:text-lg xl:text-2xl leading-relaxed xl:leading-loose font-medium">
+                  <div className="flex flex-col lg:flex-row w-full max-w-4xl xl:max-w-5xl gap-4 xl:gap-6 h-auto">
+                    <div className="flex-1 bg-white/95 p-5 xl:p-8 rounded-3xl shadow-lg border-2 border-sky-200 backdrop-blur-md flex flex-col justify-center">
+                        <p className="text-gray-700 text-sm md:text-base xl:text-xl leading-relaxed xl:leading-loose font-medium">
                             "Anak-anak, hari ini kalian akan berlibur keliling Indonesia. Kalian akan mengunjungi berbagai pulau dan bertemu teman yang berbeda. Di setiap pulau, selesaikan misi untuk belajar bersikap baik dan bekerja sama.
                             <br/><br/>
                             Ingat semboyan kita, <span className="text-sky-700 font-bold">Bhinneka Tunggal Ika</span>. Jika semua misi selesai, kalian akan menjadi <span className="text-orange-600 font-bold">Duta Liburan Bhinneka</span>!"
                         </p>
                     </div>
 
-                    <div className="flex-1 w-full bg-yellow-50/95 p-5 md:p-8 xl:p-10 rounded-3xl border-2 border-yellow-300 shadow-lg relative flex flex-col justify-center">
-                        <h3 className="font-bold text-yellow-800 mb-4 xl:mb-6 flex items-center justify-center gap-3 text-sm md:text-base xl:text-2xl uppercase tracking-wide border-b border-yellow-200 pb-3">
-                            <Icons.Users className="w-5 h-5 xl:w-8 xl:h-8" /> Data Diri Wisatawan
+                    <div className="flex-1 w-full bg-yellow-50/95 p-5 xl:p-8 rounded-3xl border-2 border-yellow-300 shadow-lg relative flex flex-col justify-center">
+                        <h3 className="font-bold text-yellow-800 mb-4 flex items-center justify-center gap-2 text-sm md:text-base xl:text-xl uppercase tracking-wide border-b border-yellow-200 pb-2 xl:pb-3">
+                            <Icons.Users className="w-5 h-5 xl:w-6 xl:h-6" /> Data Diri Wisatawan
                         </h3>
-                        <div className="space-y-4 xl:space-y-6">
+                        <div className="space-y-4">
                             <div className="relative">
-                                <span className="absolute left-4 top-3 xl:top-4 w-5 h-5 xl:w-7 xl:h-7 text-gray-400"><Icons.User className="w-5 h-5 xl:w-7 xl:h-7"/></span>
-                                <input type="text" placeholder="Tulis namamu..." className={`w-full pl-11 xl:pl-14 p-3 xl:p-4 text-base md:text-lg xl:text-2xl rounded-xl border outline-none font-medium text-gray-700 ${showError && name.length === 0 ? 'border-red-500 bg-red-50' : 'border-yellow-300 focus:border-orange-400'}`} value={name} onChange={(e) => setName(e.target.value)} />
+                                <span className="absolute left-3 xl:left-4 top-3 w-5 h-5 xl:w-6 xl:h-6 text-gray-400"><Icons.User className="w-5 h-5 xl:w-6 xl:h-6"/></span>
+                                <input type="text" placeholder="Tulis namamu..." className={`w-full pl-10 xl:pl-12 p-3 xl:p-3.5 text-sm md:text-base xl:text-lg rounded-xl border outline-none font-medium text-gray-700 ${showError && name.length === 0 ? 'border-red-500 bg-red-50' : 'border-yellow-300 focus:border-orange-400'}`} value={name} onChange={(e) => setName(e.target.value)} />
                             </div>
                             <div className="relative">
-                                <span className="absolute left-4 top-3 xl:top-4 w-5 h-5 xl:w-7 xl:h-7 text-gray-400"><Icons.School className="w-5 h-5 xl:w-7 xl:h-7"/></span>
-                                <input type="text" placeholder="Tulis nama sekolahmu..." className={`w-full pl-11 xl:pl-14 p-3 xl:p-4 text-base md:text-lg xl:text-2xl rounded-xl border outline-none font-medium text-gray-700 ${showError && school.length === 0 ? 'border-red-500 bg-red-50' : 'border-yellow-300 focus:border-orange-400'}`} value={school} onChange={(e) => setSchool(e.target.value)} />
+                                <span className="absolute left-3 xl:left-4 top-3 w-5 h-5 xl:w-6 xl:h-6 text-gray-400"><Icons.School className="w-5 h-5 xl:w-6 xl:h-6"/></span>
+                                <input type="text" placeholder="Tulis nama sekolahmu..." className={`w-full pl-10 xl:pl-12 p-3 xl:p-3.5 text-sm md:text-base xl:text-lg rounded-xl border outline-none font-medium text-gray-700 ${showError && school.length === 0 ? 'border-red-500 bg-red-50' : 'border-yellow-300 focus:border-orange-400'}`} value={school} onChange={(e) => setSchool(e.target.value)} />
                             </div>
                         </div>
                         
                         {showError && (
-                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] bg-red-100 border-2 border-red-400 text-red-700 px-4 py-3 xl:py-5 rounded-xl flex flex-col items-center justify-center text-sm xl:text-xl text-center shadow-2xl z-20">
+                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] bg-red-100 border-2 border-red-400 text-red-700 px-4 py-3 rounded-xl flex flex-col items-center justify-center text-sm xl:text-base text-center shadow-2xl z-20">
                               <span className="font-bold">Isi Nama & Sekolah dulu ya!</span>
                           </div>
                         )}
                     </div>
                   </div>
 
-                  <div className="flex flex-col-reverse md:flex-row items-center justify-between w-full max-w-4xl xl:max-w-6xl gap-5 mt-3 xl:mt-6">
-                    <div className="text-xs md:text-sm xl:text-lg text-gray-600 bg-white/70 px-5 py-3 xl:py-4 rounded-xl shadow-sm border border-white/50 backdrop-blur-sm text-center md:text-left leading-tight">
+                  <div className="flex flex-col-reverse md:flex-row items-center justify-between w-full max-w-4xl xl:max-w-5xl gap-4 mt-2">
+                    <div className="text-xs xl:text-sm text-gray-600 bg-white/70 px-4 py-2 xl:py-3 rounded-xl shadow-sm border border-white/50 backdrop-blur-sm text-center md:text-left leading-tight">
                         <span className="font-bold text-sky-800">Ide: Abdul Rahmat, S.Pd</span><br/>
                         SDN 011 Balikpapan Tengah
                     </div>
 
-                    <button onClick={handleStartClick} className="bg-gradient-to-b from-green-500 to-green-600 text-white font-black hover:from-green-400 hover:to-green-500 transition-all border-b-4 border-green-700 active:border-b-0 py-4 px-10 xl:py-5 xl:px-14 rounded-full shadow-lg active:shadow-none active:translate-y-1 flex items-center gap-3 justify-center text-lg md:text-xl xl:text-3xl w-full md:w-auto">
-                        Mulai Petualangan <Icons.ArrowRight className="w-6 h-6 md:w-7 md:h-7 xl:w-10 xl:h-10" />
+                    <button onClick={handleStartClick} className="bg-gradient-to-b from-green-500 to-green-600 text-white font-black hover:from-green-400 hover:to-green-500 transition-all border-b-4 border-green-700 active:border-b-0 py-3 xl:py-4 px-8 xl:px-12 rounded-full shadow-lg active:shadow-none active:translate-y-1 flex items-center gap-2 justify-center text-lg xl:text-2xl w-full md:w-auto">
+                        Mulai Petualangan <Icons.ArrowRight className="w-5 h-5 xl:w-7 xl:h-7" />
                     </button>
                   </div>
                 </div>
@@ -599,43 +599,43 @@
             const [activeTab, setActiveTab] = useState('tujuan');
 
             return (
-                <div className="w-full h-full flex flex-col justify-center items-center gap-5 animate-fade-in">
-                  <div className="bg-white/95 p-5 md:p-8 xl:p-10 rounded-3xl shadow-xl border-2 border-sky-200 backdrop-blur-md w-full max-w-5xl xl:max-w-7xl flex flex-col h-[85vh] md:h-[80vh] xl:h-[85vh]">
+                <div className="w-full h-full flex flex-col justify-center items-center animate-fade-in flex-1 min-h-0">
+                  <div className="bg-white/95 p-4 md:p-6 xl:p-8 rounded-3xl shadow-xl border-2 border-sky-200 backdrop-blur-md w-full max-w-5xl xl:max-w-6xl flex flex-col flex-1 min-h-0">
                       
-                      <div className="flex gap-3 mb-5 border-b pb-3 flex-shrink-0">
-                          <button onClick={() => setActiveTab('tujuan')} className={`flex-1 py-3 md:py-4 xl:py-6 text-base md:text-lg xl:text-2xl font-bold rounded-xl transition flex items-center justify-center gap-3 ${activeTab === 'tujuan' ? 'bg-sky-500 text-white shadow-md' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>
-                            <Icons.CheckCircle className="w-6 h-6 xl:w-8 xl:h-8" /> Tujuan
+                      <div className="flex gap-2 xl:gap-4 mb-4 border-b pb-2 xl:pb-4 flex-shrink-0">
+                          <button onClick={() => setActiveTab('tujuan')} className={`flex-1 py-2 md:py-3 xl:py-4 text-sm md:text-base xl:text-xl font-bold rounded-xl transition flex items-center justify-center gap-2 ${activeTab === 'tujuan' ? 'bg-sky-500 text-white shadow-md' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>
+                            <Icons.CheckCircle className="w-5 h-5 xl:w-6 xl:h-6" /> Tujuan
                           </button>
-                          <button onClick={() => setActiveTab('materi')} className={`flex-1 py-3 md:py-4 xl:py-6 text-base md:text-lg xl:text-2xl font-bold rounded-xl transition flex items-center justify-center gap-3 ${activeTab === 'materi' ? 'bg-teal-500 text-white shadow-md' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>
-                            <Icons.BookOpen className="w-6 h-6 xl:w-8 xl:h-8" /> Rangkuman Materi
+                          <button onClick={() => setActiveTab('materi')} className={`flex-1 py-2 md:py-3 xl:py-4 text-sm md:text-base xl:text-xl font-bold rounded-xl transition flex items-center justify-center gap-2 ${activeTab === 'materi' ? 'bg-teal-500 text-white shadow-md' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>
+                            <Icons.BookOpen className="w-5 h-5 xl:w-6 xl:h-6" /> Rangkuman Materi
                           </button>
                       </div>
 
-                      <div className="flex-1 overflow-y-auto custom-scrollbar p-2 md:p-4 xl:p-6">
+                      <div className="flex-1 overflow-y-auto custom-scrollbar p-2">
                           {activeTab === 'tujuan' && (
-                              <div className="space-y-5 animate-fade-in flex flex-col justify-center h-full">
-                                  <h3 className="text-2xl md:text-4xl xl:text-5xl font-extrabold text-sky-800 text-center mb-3 md:mb-5">Tujuan Pembelajaran</h3>
-                                  <div className="bg-sky-50 border-l-4 border-sky-500 p-5 md:p-8 xl:p-10 rounded-xl shadow-sm space-y-5 md:space-y-8 xl:space-y-12">
-                                      <div className="flex gap-4 md:gap-5 xl:gap-8 items-start">
-                                          <div className="bg-sky-200 text-sky-800 font-black rounded-full w-10 h-10 md:w-12 md:h-12 xl:w-16 xl:h-16 flex items-center justify-center flex-shrink-0 text-base md:text-xl xl:text-3xl shadow-inner">1</div>
-                                          <p className="text-gray-700 font-bold text-base md:text-xl xl:text-3xl pt-1.5 md:pt-2.5 xl:pt-3 leading-relaxed">Mengidentifikasi keragaman budaya daerah.</p>
+                              <div className="space-y-4 xl:space-y-6 animate-fade-in flex flex-col justify-center h-full min-h-[300px]">
+                                  <h3 className="text-xl md:text-3xl xl:text-4xl font-extrabold text-sky-800 text-center mb-2">Tujuan Pembelajaran</h3>
+                                  <div className="bg-sky-50 border-l-4 border-sky-500 p-4 md:p-6 xl:p-8 rounded-xl shadow-sm space-y-4 xl:space-y-6">
+                                      <div className="flex gap-3 xl:gap-5 items-start">
+                                          <div className="bg-sky-200 text-sky-800 font-black rounded-full w-8 h-8 md:w-10 md:h-10 xl:w-12 xl:h-12 flex items-center justify-center flex-shrink-0 text-sm md:text-lg xl:text-2xl shadow-inner">1</div>
+                                          <p className="text-gray-700 font-bold text-sm md:text-lg xl:text-2xl pt-1.5 xl:pt-2 leading-relaxed">Mengidentifikasi keragaman budaya daerah.</p>
                                       </div>
-                                      <div className="flex gap-4 md:gap-5 xl:gap-8 items-start">
-                                          <div className="bg-sky-200 text-sky-800 font-black rounded-full w-10 h-10 md:w-12 md:h-12 xl:w-16 xl:h-16 flex items-center justify-center flex-shrink-0 text-base md:text-xl xl:text-3xl shadow-inner">2</div>
-                                          <p className="text-gray-700 font-bold text-base md:text-xl xl:text-3xl pt-1.5 md:pt-2.5 xl:pt-3 leading-relaxed">Menunjukkan sikap menghormati dan menjaga keberagaman budaya di lingkungan sekitar.</p>
+                                      <div className="flex gap-3 xl:gap-5 items-start">
+                                          <div className="bg-sky-200 text-sky-800 font-black rounded-full w-8 h-8 md:w-10 md:h-10 xl:w-12 xl:h-12 flex items-center justify-center flex-shrink-0 text-sm md:text-lg xl:text-2xl shadow-inner">2</div>
+                                          <p className="text-gray-700 font-bold text-sm md:text-lg xl:text-2xl pt-1.5 xl:pt-2 leading-relaxed">Menunjukkan sikap menghormati dan menjaga keberagaman budaya di lingkungan sekitar.</p>
                                       </div>
                                   </div>
                               </div>
                           )}
                           
                           {activeTab === 'materi' && (
-                              <div className="space-y-5 animate-fade-in pb-3">
-                                  <h3 className="text-2xl md:text-4xl xl:text-5xl font-extrabold text-teal-800 text-center mb-3 md:mb-5 xl:mb-8">Rangkuman Materi</h3>
-                                  <div className="space-y-4 md:space-y-6 xl:space-y-8">
-                                      <div className="bg-teal-50 p-5 xl:p-8 rounded-xl border border-teal-100 shadow-sm">
-                                          <h4 className="font-extrabold text-teal-700 mb-2 md:mb-3 xl:mb-5 text-base md:text-lg xl:text-3xl flex items-center gap-3">🌍 Keragaman Budaya Indonesia</h4>
-                                          <p className="text-sm md:text-base xl:text-xl text-gray-700 leading-relaxed font-medium">Indonesia terdiri dari ribuan pulau yang memiliki ragam budaya. Perbedaan ini adalah kekayaan bangsa. Contohnya:</p>
-                                          <ul className="text-sm md:text-base xl:text-xl text-gray-700 mt-3 list-disc pl-6 xl:pl-10 font-medium space-y-2 xl:space-y-4">
+                              <div className="space-y-4 xl:space-y-6 animate-fade-in pb-2">
+                                  <h3 className="text-xl md:text-3xl xl:text-4xl font-extrabold text-teal-800 text-center mb-2">Rangkuman Materi</h3>
+                                  <div className="space-y-3 md:space-y-4 xl:space-y-5">
+                                      <div className="bg-teal-50 p-4 xl:p-6 rounded-xl border border-teal-100 shadow-sm">
+                                          <h4 className="font-extrabold text-teal-700 mb-2 text-sm md:text-base xl:text-2xl flex items-center gap-2">🌍 Keragaman Budaya Indonesia</h4>
+                                          <p className="text-xs md:text-sm xl:text-lg text-gray-700 leading-relaxed font-medium">Indonesia terdiri dari ribuan pulau yang memiliki ragam budaya. Perbedaan ini adalah kekayaan bangsa. Contohnya:</p>
+                                          <ul className="text-xs md:text-sm xl:text-lg text-gray-700 mt-2 list-disc pl-5 xl:pl-8 font-medium space-y-1.5">
                                               <li><strong>Suku:</strong> Batak (Sumatera Utara), Jawa, Dayak (Kalimantan), Bugis (Sulawesi Selatan), Ambon (Maluku), Asmat (Papua).</li>
                                               <li><strong>Bahasa Daerah:</strong> Minang (Sumatera Barat), Sunda (Jawa Barat), Banjar (Kalimantan), Makassar (Sulawesi Selatan).</li>
                                               <li><strong>Pakaian Adat:</strong> Ulos (Sumatera Utara), Bundo Kanduang (Sumatera Barat), Ta'a (Kalimantan Timur), Baju Bodo (Sulawesi Selatan), Cele (Maluku).</li>
@@ -644,19 +644,19 @@
                                               <li><strong>Makanan Khas:</strong> Rendang (Sumatera Barat), Soto Banjar (Kalimantan Selatan), Coto Makassar (Sulawesi Selatan), Papeda (Maluku & Papua), Gudeg (Daerah Istimewa Yogyakarta).</li>
                                           </ul>
                                       </div>
-                                      <div className="bg-orange-50 p-5 xl:p-8 rounded-xl border border-orange-100 shadow-sm">
-                                          <h4 className="font-extrabold text-orange-700 mb-2 md:mb-3 xl:mb-5 text-base md:text-lg xl:text-3xl flex items-center gap-3">🤝 Sikap Menghormati (Toleransi)</h4>
-                                          <p className="text-sm md:text-base xl:text-xl text-gray-700 leading-relaxed font-medium mb-3 xl:mb-5">Toleransi berarti menerima dan menghargai perbedaan. Contoh sikapnya:</p>
-                                          <ul className="text-sm md:text-base xl:text-xl text-gray-700 list-disc pl-6 xl:pl-10 font-medium space-y-2 xl:space-y-4">
+                                      <div className="bg-orange-50 p-4 xl:p-6 rounded-xl border border-orange-100 shadow-sm">
+                                          <h4 className="font-extrabold text-orange-700 mb-2 text-sm md:text-base xl:text-2xl flex items-center gap-2">🤝 Sikap Menghormati (Toleransi)</h4>
+                                          <p className="text-xs md:text-sm xl:text-lg text-gray-700 leading-relaxed font-medium mb-2">Toleransi berarti menerima dan menghargai perbedaan. Contoh sikapnya:</p>
+                                          <ul className="text-xs md:text-sm xl:text-lg text-gray-700 list-disc pl-5 xl:pl-8 font-medium space-y-1.5">
                                               <li><strong>Di Rumah:</strong> Menghargai pendapat saudara, tidak mengganggu anggota keluarga yang sedang beribadah.</li>
                                               <li><strong>Di Sekolah:</strong> Bermain dengan siapa saja tanpa membedakan suku/agama, tidak mengejek logat atau bahasa teman.</li>
                                               <li><strong>Di Masyarakat:</strong> Menghormati tetangga yang sedang merayakan hari raya, menjenguk tetangga yang sakit meski berbeda agama.</li>
                                           </ul>
                                       </div>
-                                      <div className="bg-purple-50 p-5 xl:p-8 rounded-xl border border-purple-100 shadow-sm">
-                                          <h4 className="font-extrabold text-purple-700 mb-2 md:mb-3 xl:mb-5 text-base md:text-lg xl:text-3xl flex items-center gap-3">🛡️ Menjaga Keberagaman</h4>
-                                          <p className="text-sm md:text-base xl:text-xl text-gray-700 leading-relaxed font-medium mb-3 xl:mb-5">Kita dapat menjaga keberagaman di lingkungan sekitar dengan cara:</p>
-                                          <ul className="text-sm md:text-base xl:text-xl text-gray-700 list-disc pl-6 xl:pl-10 font-medium space-y-2 xl:space-y-4">
+                                      <div className="bg-purple-50 p-4 xl:p-6 rounded-xl border border-purple-100 shadow-sm">
+                                          <h4 className="font-extrabold text-purple-700 mb-2 text-sm md:text-base xl:text-2xl flex items-center gap-2">🛡️ Menjaga Keberagaman</h4>
+                                          <p className="text-xs md:text-sm xl:text-lg text-gray-700 leading-relaxed font-medium mb-2">Kita dapat menjaga keberagaman di lingkungan sekitar dengan cara:</p>
+                                          <ul className="text-xs md:text-sm xl:text-lg text-gray-700 list-disc pl-5 xl:pl-8 font-medium space-y-1.5">
                                               <li>Mempelajari budaya dari daerah lain (contoh: ikut ekstrakurikuler tari tradisional nusantara).</li>
                                               <li>Bangga memakai produk lokal dan pakaian adat pada hari tertentu (misal: memakai baju batik).</li>
                                               <li>Tidak menjelek-jelekkan tradisi atau kepercayaan orang lain.</li>
@@ -668,9 +668,9 @@
                           )}
                       </div>
 
-                      <div className="mt-5 pt-5 xl:mt-8 xl:pt-8 border-t text-center flex-shrink-0">
-                          <button onClick={onNext} className="bg-gradient-to-b from-green-500 to-green-600 text-white font-black hover:from-green-400 hover:to-green-500 transition-all border-b-4 border-green-700 active:border-b-0 py-4 px-10 xl:py-5 xl:px-14 text-lg md:text-xl xl:text-3xl rounded-full shadow-lg active:shadow-none active:translate-y-1 inline-flex items-center gap-3">
-                              Lanjut ke Peta <Icons.Map className="w-6 h-6 md:w-7 md:h-7 xl:w-10 xl:h-10" />
+                      <div className="mt-4 pt-4 border-t text-center flex-shrink-0">
+                          <button onClick={onNext} className="bg-gradient-to-b from-green-500 to-green-600 text-white font-black hover:from-green-400 hover:to-green-500 transition-all border-b-4 border-green-700 active:border-b-0 py-3 px-8 xl:py-4 xl:px-10 text-base md:text-lg xl:text-2xl rounded-full shadow-lg active:shadow-none active:translate-y-1 inline-flex items-center gap-2">
+                              Lanjut ke Peta <Icons.Map className="w-5 h-5 xl:w-7 xl:h-7" />
                           </button>
                       </div>
                   </div>
@@ -681,10 +681,10 @@
         // --- MAP SCREEN COMPONENT ---
         function MapScreen({ unlockedLevel, onLevelSelect, onFinish, isCompleted }) {
             return (
-                <div className="flex flex-col h-[70vh] md:h-[80vh] w-full max-w-6xl xl:max-w-full bg-white rounded-2xl md:rounded-3xl overflow-hidden shadow-xl animate-fade-in relative border-4 border-white mx-auto">
-                  <div className="absolute top-3 left-3 md:top-5 md:left-5 xl:top-8 xl:left-8 z-10 bg-white/95 backdrop-blur px-4 py-3 md:px-6 md:py-4 xl:px-8 xl:py-6 rounded-xl xl:rounded-2xl shadow-lg border-l-4 md:border-l-8 border-sky-500">
-                    <h2 className="font-bold text-sky-800 text-sm md:text-xl xl:text-3xl tracking-wide">Peta Perjalanan</h2>
-                    <p className="text-xs md:text-sm xl:text-xl text-gray-600 font-medium mt-1">Pilih pulau yang terbuka!</p>
+                <div className="flex flex-col flex-1 min-h-[400px] w-full max-w-6xl xl:max-w-7xl bg-white rounded-2xl md:rounded-3xl overflow-hidden shadow-xl animate-fade-in relative border-4 border-white mx-auto">
+                  <div className="absolute top-3 left-3 md:top-5 md:left-5 z-10 bg-white/95 backdrop-blur px-4 py-3 md:px-5 md:py-4 rounded-xl shadow-lg border-l-4 md:border-l-8 border-sky-500">
+                    <h2 className="font-bold text-sky-800 text-sm md:text-xl tracking-wide">Peta Perjalanan</h2>
+                    <p className="text-xs md:text-sm text-gray-600 font-medium mt-1">Pilih pulau yang terbuka!</p>
                   </div>
 
                   <div className="relative w-full h-full bg-sky-100 overflow-hidden group">
@@ -696,17 +696,17 @@
                       
                       return (
                         <button key={pos.level} onClick={() => isUnlocked ? onLevelSelect(pos.level) : null} disabled={!isUnlocked} style={{ top: pos.top, left: pos.left }}
-                          className={`absolute transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-20 md:h-20 xl:w-28 xl:h-28 rounded-full flex items-center justify-center border-2 md:border-[5px] xl:border-[8px] shadow-xl transition-all duration-300 z-20 group/btn
-                            ${isCurrent ? 'scale-110 animate-bounce-slow ring-4 md:ring-4 xl:ring-8 ring-yellow-400 border-white' : 'hover:scale-110 border-white'}
+                          className={`absolute transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-20 md:h-20 xl:w-24 xl:h-24 rounded-full flex items-center justify-center border-2 md:border-[5px] shadow-xl transition-all duration-300 z-20 group/btn
+                            ${isCurrent ? 'scale-110 animate-bounce-slow ring-4 ring-yellow-400 border-white' : 'hover:scale-110 border-white'}
                             ${isUnlocked ? 'bg-gradient-to-br from-teal-400 to-blue-500 text-white cursor-pointer' : 'bg-gray-200 border-gray-300 text-gray-400 cursor-not-allowed grayscale'}
                           `}
                         >
                           {isUnlocked ? (
-                            <span className="font-extrabold text-xl md:text-3xl xl:text-5xl drop-shadow-md">{pos.level}</span>
+                            <span className="font-extrabold text-xl md:text-3xl xl:text-4xl drop-shadow-md">{pos.level}</span>
                           ) : (
-                            <Icons.Lock className="w-5 h-5 md:w-8 md:h-8 xl:w-12 xl:h-12 opacity-50" />
+                            <Icons.Lock className="w-5 h-5 md:w-8 md:h-8 opacity-50" />
                           )}
-                          <div className="absolute -bottom-10 xl:-bottom-16 left-1/2 transform -translate-x-1/2 bg-white px-3 py-1.5 xl:px-5 xl:py-2.5 rounded-full text-[10px] md:text-sm xl:text-xl font-bold whitespace-nowrap shadow-md border-2 text-gray-700 opacity-0 group-hover/btn:opacity-100 transition-opacity pointer-events-none">
+                          <div className="absolute -bottom-8 xl:-bottom-12 left-1/2 transform -translate-x-1/2 bg-white px-3 py-1.5 xl:px-4 xl:py-2 rounded-full text-[10px] md:text-sm xl:text-base font-bold whitespace-nowrap shadow-md border-2 text-gray-700 opacity-0 group-hover/btn:opacity-100 transition-opacity pointer-events-none">
                             {LEVEL_DATA[pos.level].title}
                           </div>
                         </button>
@@ -714,8 +714,8 @@
                     })}
 
                     {isCompleted && (
-                      <button onClick={onFinish} className="absolute bottom-8 right-8 md:bottom-12 md:right-12 xl:bottom-16 xl:right-16 bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-bold py-4 px-8 md:py-5 md:px-10 xl:py-8 xl:px-16 rounded-full shadow-lg flex items-center gap-3 animate-pulse z-30 transform hover:scale-105 transition text-base md:text-xl xl:text-4xl">
-                        <Icons.Award className="w-6 h-6 md:w-8 md:h-8 xl:w-12 xl:h-12" /> <span>Sertifikat</span>
+                      <button onClick={onFinish} className="absolute bottom-8 right-8 md:bottom-12 md:right-12 bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-bold py-3 px-6 md:py-4 md:px-8 xl:py-5 xl:px-10 rounded-full shadow-lg flex items-center gap-3 animate-pulse z-30 transform hover:scale-105 transition text-sm md:text-base xl:text-xl">
+                        <Icons.Award className="w-5 h-5 md:w-7 md:h-7 xl:w-8 xl:h-8" /> <span>Sertifikat</span>
                       </button>
                     )}
                   </div>
@@ -780,20 +780,20 @@
             const allItemsDropped = Object.keys(droppedItems).length === data.items.length;
 
             return (
-                <div className="flex flex-col h-full w-full max-w-7xl mx-auto pb-4">
+                <div className="flex flex-col h-full w-full max-w-7xl mx-auto flex-1 min-h-0">
                   {!completed ? (
                     <div className="flex flex-col flex-1 min-h-0 animate-fade-in">
-                        <div className="bg-yellow-100 p-3 xl:p-5 rounded-xl border-l-4 border-yellow-500 text-center text-sm md:text-base xl:text-xl font-bold text-yellow-800 mb-4 shadow-sm flex-shrink-0">
+                        <div className="bg-yellow-100 p-3 xl:p-4 rounded-xl border-l-4 border-yellow-500 text-center text-sm md:text-base xl:text-xl font-bold text-yellow-800 mb-4 shadow-sm flex-shrink-0">
                             💡 {data.instruction}
                         </div>
                         
                         <div className="flex flex-col md:flex-row gap-4 xl:gap-8 flex-1 min-h-0">
                           <div className="flex-1 md:w-1/2 flex flex-col min-h-0 overflow-y-auto custom-scrollbar pr-2">
-                            <div className="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-3 p-3 bg-white/50 rounded-2xl border-2 border-dashed border-gray-300 min-h-[200px]">
+                            <div className="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-3 p-3 xl:p-4 bg-white/50 rounded-2xl border-2 border-dashed border-gray-300 min-h-[200px]">
                               {shuffledItems.map(item => (
                                 !droppedItems[item.id] && (
                                   <div key={item.id} draggable onDragStart={(e) => handleDragStart(e, item)} onClick={() => handleItemClick(item)}
-                                    className={`p-3 rounded-xl border-2 text-center aspect-square flex items-center justify-center cursor-grab active:cursor-grabbing select-none bg-white shadow-sm hover:shadow-md ${selectedItem?.id === item.id ? 'border-sky-400 bg-sky-50 scale-105' : 'border-gray-200'}`}
+                                    className={`p-3 xl:p-4 rounded-xl border-2 text-center aspect-square flex items-center justify-center cursor-grab active:cursor-grabbing select-none bg-white shadow-sm hover:shadow-md ${selectedItem?.id === item.id ? 'border-sky-400 bg-sky-50 scale-105' : 'border-gray-200'}`}
                                   >
                                     <img src={item.img} alt={item.text} className="w-full h-full object-contain pointer-events-none" />
                                   </div>
@@ -807,7 +807,7 @@
                             <div className="grid grid-cols-1 gap-3">
                               {shuffledTargets.map(target => (
                                 <div key={target.id} onDragOver={(e) => handleDragOver(e, target.id)} onDragLeave={handleDragLeave} onDrop={(e) => handleDrop(e, target)} onClick={() => handleTargetClick(target)}
-                                  className={`w-full p-4 xl:p-6 rounded-xl border-2 border-dashed flex justify-between items-center transition-all min-h-[80px] xl:min-h-[100px] cursor-pointer ${dragOverTarget === target.id ? 'bg-green-100 border-green-400 scale-[1.02]' : 'bg-white/90 border-gray-300'}`}
+                                  className={`w-full p-3 xl:p-5 rounded-xl border-2 border-dashed flex justify-between items-center transition-all min-h-[70px] xl:min-h-[100px] cursor-pointer ${dragOverTarget === target.id ? 'bg-green-100 border-green-400 scale-[1.02]' : 'bg-white/90 border-gray-300'}`}
                                 >
                                   <span className="font-bold text-gray-700 text-sm md:text-base xl:text-xl">{target.label}</span>
                                   <div className="flex gap-2 flex-wrap justify-end">
@@ -827,20 +827,20 @@
                         {allItemsDropped && (
                             <div className="mt-4 flex flex-col items-center flex-shrink-0 animate-fade-in">
                                 {feedbackMsg && <p className="text-red-600 font-bold text-sm md:text-base xl:text-xl mb-3 bg-red-100 px-5 py-3 rounded-xl border border-red-200 text-center">{feedbackMsg}</p>}
-                                <button onClick={handleCheckAnswer} className="bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white font-black py-3 px-10 xl:py-5 xl:px-14 rounded-2xl shadow-[0_6px_0_#1d4ed8] active:shadow-none active:translate-y-2 transition-all text-lg xl:text-2xl flex items-center justify-center gap-3">
+                                <button onClick={handleCheckAnswer} className="bg-gradient-to-b from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white font-black py-3 px-10 xl:py-4 xl:px-14 rounded-2xl shadow-[0_6px_0_#1d4ed8] active:shadow-none active:translate-y-2 transition-all text-lg xl:text-2xl flex items-center justify-center gap-3">
                                     <Icons.CheckCircle className="w-6 h-6 xl:w-8 xl:h-8" /> Cek Jawaban
                                 </button>
                             </div>
                         )}
                     </div>
                   ) : (
-                    <div className="bg-white/95 p-6 md:p-10 xl:p-14 rounded-3xl shadow-xl text-center space-y-5 border border-green-100 max-w-3xl mx-auto animate-fade-in mt-4">
+                    <div className="bg-white/95 p-6 md:p-10 xl:p-14 rounded-3xl shadow-xl text-center space-y-5 border border-green-100 max-w-3xl mx-auto animate-fade-in mt-4 flex-shrink-0">
                       <div className="w-16 h-16 md:w-20 md:h-20 xl:w-28 xl:h-28 bg-green-100 rounded-full flex items-center justify-center mx-auto text-3xl md:text-4xl xl:text-6xl shadow-inner">🎉</div>
                       <div>
                           <h3 className="text-xl md:text-3xl xl:text-4xl font-black text-green-800 uppercase tracking-wider mb-2">Luar Biasa!</h3>
                           <p className="text-base md:text-lg xl:text-2xl font-bold text-gray-700 leading-relaxed">Kamu telah menyelesaikan misi di Pulau Sumatera dengan sempurna.</p>
                       </div>
-                      <button onClick={onComplete} className="bg-gradient-to-b from-green-500 to-green-600 hover:from-green-400 hover:to-green-500 text-white font-black w-full py-4 xl:py-6 text-lg md:text-xl xl:text-3xl rounded-2xl shadow-[0_6px_0_#166534] active:shadow-none active:translate-y-2 transition-all">Lanjut Perjalanan 🚀</button>
+                      <button onClick={onComplete} className="bg-gradient-to-b from-green-500 to-green-600 hover:from-green-400 hover:to-green-500 text-white font-black w-full py-4 xl:py-5 text-lg md:text-xl xl:text-3xl rounded-2xl shadow-[0_6px_0_#166534] active:shadow-none active:translate-y-2 transition-all">Lanjut Perjalanan 🚀</button>
                     </div>
                   )}
                 </div>
@@ -922,12 +922,12 @@
             if (step === 'feedback') {
                 return (
                     <div className="flex flex-col h-full w-full max-w-5xl mx-auto pb-4 animate-fade-in justify-center">
-                        <div className="bg-white/95 p-8 md:p-10 xl:p-14 rounded-3xl shadow-xl border-4 border-green-200 text-center">
-                            <Icons.Award className="w-20 h-20 xl:w-28 xl:h-28 text-yellow-500 mx-auto animate-bounce-slow mb-3" />
-                            <h3 className="text-3xl xl:text-5xl font-black text-gray-800 mb-3 xl:mb-5">Hasil Asesmen</h3>
-                            <p className="text-xl xl:text-3xl font-bold text-gray-600 mb-8 xl:mb-12">Kamu menjawab <span className="text-green-600 text-4xl xl:text-6xl mx-2">{scoreDetails}</span> dari {flatQuestions.length} soal dengan benar!</p>
+                        <div className="bg-white/95 p-6 md:p-10 xl:p-14 rounded-3xl shadow-xl border-4 border-green-200 text-center">
+                            <Icons.Award className="w-16 h-16 xl:w-24 xl:h-24 text-yellow-500 mx-auto animate-bounce-slow mb-3" />
+                            <h3 className="text-2xl md:text-3xl xl:text-5xl font-black text-gray-800 mb-3 xl:mb-5">Hasil Asesmen</h3>
+                            <p className="text-lg md:text-xl xl:text-3xl font-bold text-gray-600 mb-6 xl:mb-10">Kamu menjawab <span className="text-green-600 text-3xl md:text-4xl xl:text-6xl mx-2">{scoreDetails}</span> dari {flatQuestions.length} soal dengan benar!</p>
                             
-                            <div className="space-y-4 xl:space-y-6 text-left max-h-[40vh] overflow-y-auto custom-scrollbar pr-3 mb-8 xl:mb-10">
+                            <div className="space-y-4 xl:space-y-6 text-left max-h-[40vh] overflow-y-auto custom-scrollbar pr-3 mb-8">
                                 {flatQuestions.map((q) => {
                                     const userAns = answers[q.id];
                                     let isCorrect = false;
@@ -940,7 +940,7 @@
                                                 {isCorrect ? <Icons.CheckCircle className="w-6 h-6 xl:w-8 xl:h-8 text-green-600 flex-shrink-0 mt-0.5" /> : <Icons.X className="w-6 h-6 xl:w-8 xl:h-8 text-red-600 flex-shrink-0 mt-0.5" />}
                                                 <p className="font-bold text-gray-800 text-sm md:text-base xl:text-xl">{q.text}</p>
                                             </div>
-                                            <div className="ml-9 xl:ml-12 space-y-1 xl:space-y-2 text-sm md:text-base xl:text-xl">
+                                            <div className="ml-9 xl:ml-13 space-y-1 xl:space-y-2 text-sm md:text-base xl:text-xl">
                                                 {q.options.map((opt, oIdx) => {
                                                     const isSelected = q.type === 'single' ? userAns === oIdx : (userAns || []).includes(oIdx);
                                                     const isCorrectOpt = q.type === 'single' ? q.correct === oIdx : q.correct.includes(oIdx);
@@ -963,13 +963,13 @@
                                 })}
                             </div>
 
-                            <div className="flex flex-col sm:flex-row gap-5 justify-center">
+                            <div className="flex flex-col sm:flex-row gap-4 xl:gap-6 justify-center">
                                 {scoreDetails < flatQuestions.length && (
-                                    <button onClick={handleRetry} className="bg-yellow-500 hover:bg-yellow-600 text-white font-black py-4 px-10 xl:py-6 xl:px-14 rounded-2xl shadow-[0_6px_0_#ca8a04] active:shadow-none active:translate-y-2 transition-all text-lg md:text-xl xl:text-2xl flex items-center justify-center gap-3">
+                                    <button onClick={handleRetry} className="bg-yellow-500 hover:bg-yellow-600 text-white font-black py-3 px-8 xl:py-5 xl:px-12 rounded-2xl shadow-[0_6px_0_#ca8a04] active:shadow-none active:translate-y-2 transition-all text-base md:text-lg xl:text-2xl flex items-center justify-center gap-3">
                                         <Icons.RefreshCcw className="w-6 h-6 xl:w-8 xl:h-8" /> Coba Lagi
                                     </button>
                                 )}
-                                <button onClick={handleProceed} className="bg-gradient-to-b from-green-500 to-green-600 hover:from-green-400 hover:to-green-500 text-white font-black py-4 px-10 xl:py-6 xl:px-14 rounded-2xl shadow-[0_6px_0_#15803d] active:shadow-none active:translate-y-2 transition-all text-lg md:text-xl xl:text-2xl flex items-center justify-center gap-3">
+                                <button onClick={handleProceed} className="bg-gradient-to-b from-green-500 to-green-600 hover:from-green-400 hover:to-green-500 text-white font-black py-3 px-8 xl:py-5 xl:px-12 rounded-2xl shadow-[0_6px_0_#15803d] active:shadow-none active:translate-y-2 transition-all text-base md:text-lg xl:text-2xl flex items-center justify-center gap-3">
                                     Lanjut Perjalanan 🚀
                                 </button>
                             </div>
@@ -979,28 +979,28 @@
             }
 
             return (
-                <div className="flex flex-col h-full w-full max-w-7xl mx-auto pb-4">
+                <div className="flex flex-col h-full w-full max-w-7xl mx-auto flex-1 min-h-0">
                    <div className="bg-blue-100 text-blue-800 p-3 xl:p-4 rounded-xl text-center font-bold text-sm md:text-base xl:text-xl border-l-4 border-blue-500 shadow-sm flex items-center justify-center gap-3 mb-4 flex-shrink-0">
                      <Icons.BookOpen className="w-5 h-5 xl:w-7 xl:h-7" /> Baca teks stimulus di kiri, lalu jawab soal di kanan.
                    </div>
 
                    <div className="bg-white/95 rounded-3xl shadow-xl border-2 border-orange-200 overflow-hidden flex flex-col md:flex-row flex-1 min-h-0">
                        {/* Panel Kiri: Stimulus */}
-                       <div className="md:w-1/2 bg-orange-50 p-4 md:p-6 xl:p-10 border-b md:border-b-0 md:border-r border-orange-200 flex flex-col overflow-y-auto custom-scrollbar">
-                           <h3 className="font-black text-orange-800 mb-3 xl:mb-5 flex items-center gap-3 text-base md:text-lg xl:text-2xl">
+                       <div className="md:w-1/2 bg-orange-50 p-4 md:p-6 xl:p-8 border-b md:border-b-0 md:border-r border-orange-200 flex flex-col min-h-0 overflow-y-auto custom-scrollbar">
+                           <h3 className="font-black text-orange-800 mb-3 xl:mb-5 flex items-center gap-3 text-base md:text-lg xl:text-2xl flex-shrink-0">
                                {currentQ.stimulusTitle}
                            </h3>
-                           <div className="text-gray-700 text-sm md:text-base xl:text-xl whitespace-pre-wrap leading-relaxed font-medium bg-white p-4 md:p-6 xl:p-8 rounded-2xl border border-orange-100 shadow-sm">
+                           <div className="text-gray-700 text-sm md:text-base xl:text-xl whitespace-pre-wrap leading-relaxed font-medium bg-white p-4 md:p-6 xl:p-8 rounded-2xl border border-orange-100 shadow-sm flex-1">
                                {currentQ.stimulusText}
                            </div>
                        </div>
                        
                        {/* Panel Kanan: Soal */}
-                       <div className="md:w-1/2 p-4 md:p-6 xl:p-10 bg-white flex flex-col overflow-y-auto custom-scrollbar">
-                           <div className="text-xs md:text-sm xl:text-base font-bold text-gray-400 uppercase tracking-wider mb-1 xl:mb-3">Soal {currentQIndex + 1} dari {flatQuestions.length}</div>
-                           <p className="font-bold text-gray-800 text-base md:text-lg xl:text-2xl leading-relaxed mb-4 xl:mb-8">{currentQ.text}</p>
+                       <div className="md:w-1/2 p-4 md:p-6 xl:p-8 flex flex-col min-h-0">
+                           <div className="text-xs md:text-sm xl:text-base font-bold text-gray-400 uppercase tracking-wider mb-1 xl:mb-3 flex-shrink-0">Soal {currentQIndex + 1} dari {flatQuestions.length}</div>
+                           <p className="font-bold text-gray-800 text-base md:text-lg xl:text-2xl leading-relaxed mb-4 xl:mb-6 flex-shrink-0">{currentQ.text}</p>
                            
-                           <div className="space-y-3 xl:space-y-5 flex-grow">
+                           <div className="space-y-3 xl:space-y-4 flex-grow overflow-y-auto custom-scrollbar pr-2">
                                {currentQ.options.map((opt, oIdx) => {
                                    const isSelected = currentQ.type === 'single' ? answers[currentQ.id] === oIdx : (answers[currentQ.id] || []).includes(oIdx);
                                    let btnClass = `w-full text-left px-4 py-3 md:px-5 md:py-4 xl:py-5 rounded-xl border text-sm md:text-base xl:text-xl font-medium transition-all flex items-start gap-4 ${isSelected ? 'border-sky-500 bg-sky-50 shadow-sm ring-2 ring-sky-300' : 'border-gray-200 hover:bg-gray-50'}`;
@@ -1008,8 +1008,8 @@
 
                                    return (
                                        <button key={oIdx} onClick={() => currentQ.type === 'single' ? handleSingle(currentQ.id, oIdx) : handleMultiple(currentQ.id, oIdx)} className={btnClass}>
-                                           <div className={`mt-1 flex-shrink-0 w-5 h-5 md:w-6 md:h-6 xl:w-8 xl:h-8 border-2 ${shapeClass} flex items-center justify-center transition-colors ${isSelected ? 'border-sky-600 bg-sky-500' : 'border-gray-300 bg-white'}`}>
-                                               {isSelected && (currentQ.type === 'single' ? <div className="w-2 h-2 md:w-2.5 md:h-2.5 xl:w-3 xl:h-3 bg-white rounded-full" /> : <Icons.CheckCircle className="w-4 h-4 md:w-5 md:h-5 xl:w-6 xl:h-6 text-white" />)}
+                                           <div className={`mt-0.5 md:mt-1 flex-shrink-0 w-5 h-5 md:w-6 md:h-6 xl:w-8 xl:h-8 border-2 ${shapeClass} flex items-center justify-center transition-colors ${isSelected ? 'border-sky-600 bg-sky-500' : 'border-gray-300 bg-white'}`}>
+                                               {isSelected && (currentQ.type === 'single' ? <div className="w-2 h-2 md:w-2.5 md:h-2.5 xl:w-3.5 xl:h-3.5 bg-white rounded-full" /> : <Icons.CheckCircle className="w-4 h-4 md:w-5 md:h-5 xl:w-6 xl:h-6 text-white" />)}
                                            </div>
                                            <span className="flex-1 leading-snug">{opt}</span>
                                        </button>
@@ -1018,7 +1018,7 @@
                            </div>
 
                            {/* Navigasi Soal */}
-                           <div className="flex justify-between items-center gap-3 mt-6 xl:mt-10 pt-4 border-t border-gray-100">
+                           <div className="flex justify-between items-center gap-3 mt-4 xl:mt-6 pt-4 border-t border-gray-100 flex-shrink-0">
                                <button onClick={handlePrev} disabled={currentQIndex === 0} className={`py-3 px-4 xl:py-4 xl:px-6 rounded-2xl font-bold flex items-center gap-2 transition-all text-sm md:text-base xl:text-xl ${currentQIndex === 0 ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-700 border-2 border-gray-300 hover:bg-gray-50 shadow-sm'}`}>
                                    <Icons.ArrowRight className="w-5 h-5 xl:w-7 xl:h-7 rotate-180" /> <span className="hidden sm:inline">Sebelumnya</span>
                                </button>
@@ -1126,7 +1126,7 @@
                                 })}
                             </div>
 
-                            <div className="flex flex-col sm:flex-row gap-5 justify-center">
+                            <div className="flex flex-col sm:flex-row gap-4 xl:gap-6 justify-center">
                                 {scoreDetails < shuffledQuestions.length && (
                                     <button onClick={handleRetry} className="bg-yellow-500 hover:bg-yellow-600 text-white font-black py-4 px-10 xl:py-6 xl:px-14 rounded-2xl shadow-[0_6px_0_#ca8a04] active:shadow-none active:translate-y-2 transition-all text-lg md:text-xl xl:text-2xl flex items-center justify-center gap-3">
                                         <Icons.RefreshCcw className="w-6 h-6 xl:w-8 xl:h-8" /> Coba Lagi
@@ -1142,7 +1142,7 @@
             }
 
             return (
-                <div className="flex flex-col h-full w-full max-w-7xl mx-auto pb-4">
+                <div className="flex flex-col h-full w-full max-w-7xl mx-auto flex-1 min-h-0">
                    <div className="bg-blue-100 text-blue-800 p-3 xl:p-4 rounded-xl text-center font-bold text-sm md:text-base xl:text-xl border-l-4 border-blue-500 shadow-sm flex items-center justify-center gap-3 mb-4 flex-shrink-0">
                      <Icons.BookOpen className="w-5 h-5 xl:w-7 xl:h-7" /> Baca teks stimulus di kiri, lalu pilih Benar/Salah dan Alasannya di kanan.
                    </div>
@@ -1150,21 +1150,21 @@
                    <div className="bg-white/95 rounded-3xl shadow-xl border-2 border-green-200 overflow-hidden flex flex-col md:flex-row flex-1 min-h-0">
                        
                        {/* Panel Kiri: Stimulus */}
-                       <div className="md:w-1/2 bg-green-50 p-4 md:p-6 xl:p-10 border-b md:border-b-0 md:border-r border-green-200 flex flex-col overflow-y-auto custom-scrollbar">
-                           <h3 className="font-black text-green-800 mb-3 xl:mb-5 flex items-center gap-3 text-base md:text-lg xl:text-2xl">
+                       <div className="md:w-1/2 bg-green-50 p-4 md:p-6 xl:p-8 border-b md:border-b-0 md:border-r border-green-200 flex flex-col min-h-0 overflow-y-auto custom-scrollbar">
+                           <h3 className="font-black text-green-800 mb-3 xl:mb-5 flex items-center gap-3 text-base md:text-lg xl:text-2xl flex-shrink-0">
                                {data.stimulusTitle}
                            </h3>
-                           <div className="text-gray-700 text-sm md:text-base xl:text-xl whitespace-pre-wrap leading-relaxed font-medium bg-white p-4 md:p-6 xl:p-8 rounded-2xl border border-green-100 shadow-sm">
+                           <div className="text-gray-700 text-sm md:text-base xl:text-xl whitespace-pre-wrap leading-relaxed font-medium bg-white p-4 md:p-6 xl:p-8 rounded-2xl border border-green-100 shadow-sm flex-1">
                                {data.stimulusText}
                            </div>
                        </div>
                        
                        {/* Panel Kanan: Soal */}
-                       <div className="md:w-1/2 p-4 md:p-6 xl:p-10 bg-white flex flex-col overflow-y-auto custom-scrollbar">
-                           <div className="text-xs md:text-sm xl:text-base font-bold text-gray-400 uppercase tracking-wider mb-1 xl:mb-3">Soal {currentQIndex + 1} dari {shuffledQuestions.length}</div>
-                           <p className="font-bold text-gray-800 text-base md:text-lg xl:text-2xl leading-relaxed mb-4 xl:mb-8">{currentQ.text}</p>
+                       <div className="md:w-1/2 p-4 md:p-6 xl:p-8 flex flex-col min-h-0">
+                           <div className="text-xs md:text-sm xl:text-base font-bold text-gray-400 uppercase tracking-wider mb-1 xl:mb-3 flex-shrink-0">Soal {currentQIndex + 1} dari {shuffledQuestions.length}</div>
+                           <p className="font-bold text-gray-800 text-base md:text-lg xl:text-2xl leading-relaxed mb-4 xl:mb-6 flex-shrink-0">{currentQ.text}</p>
                            
-                           <div className="space-y-4 xl:space-y-8 flex-grow">
+                           <div className="space-y-4 xl:space-y-6 flex-grow overflow-y-auto custom-scrollbar pr-2">
                                <div className="space-y-2 xl:space-y-4">
                                    <label className="block text-sm md:text-base xl:text-xl font-bold text-gray-600">Pernyataan tersebut:</label>
                                    <div className="flex gap-3 xl:gap-5">
@@ -1183,7 +1183,7 @@
                                        <select 
                                             value={answers[currentQ.id]?.reasonIdx !== undefined ? answers[currentQ.id].reasonIdx : ""} 
                                             onChange={(e) => handleReason(currentQ.id, e.target.value)} 
-                                            className="w-full p-3 md:p-4 xl:p-6 rounded-xl border-2 border-gray-200 bg-gray-50 text-base xl:text-xl font-medium text-gray-700 outline-none focus:border-green-400 focus:bg-white transition-all appearance-none cursor-pointer"
+                                            className="w-full p-3 md:p-4 xl:p-6 rounded-xl border-2 border-gray-200 bg-gray-50 text-sm md:text-base xl:text-xl font-medium text-gray-700 outline-none focus:border-green-400 focus:bg-white transition-all appearance-none cursor-pointer"
                                        >
                                            <option value="" disabled>-- Klik di sini untuk memilih alasan --</option>
                                            {currentQ.reasonOptions.map((opt, idx) => (
@@ -1198,7 +1198,7 @@
                            </div>
 
                            {/* Navigasi Soal */}
-                           <div className="flex justify-between items-center gap-3 mt-6 xl:mt-10 pt-4 border-t border-gray-100 flex-shrink-0">
+                           <div className="flex justify-between items-center gap-3 mt-4 xl:mt-6 pt-4 border-t border-gray-100 flex-shrink-0">
                                <button onClick={handlePrev} disabled={currentQIndex === 0} className={`py-3 px-4 xl:py-4 xl:px-6 rounded-2xl font-bold flex items-center gap-2 transition-all text-sm md:text-base xl:text-xl ${currentQIndex === 0 ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-700 border-2 border-gray-300 hover:bg-gray-50 shadow-sm'}`}>
                                    <Icons.ArrowRight className="w-5 h-5 xl:w-7 xl:h-7 rotate-180" /> <span className="hidden sm:inline">Sebelumnya</span>
                                </button>
@@ -1334,11 +1334,12 @@
             };
 
             return (
-                <div className="flex flex-col h-full w-full max-w-6xl mx-auto pb-4">
+                <div className="flex flex-col h-full w-full max-w-5xl mx-auto flex-1 min-h-0">
                    {!completed ? (
-                       <div className="bg-white/95 rounded-3xl shadow-xl border-2 border-purple-200 flex flex-col flex-1 min-h-0 mt-4 overflow-hidden">
+                       <div className="bg-white/95 rounded-3xl shadow-xl border-2 border-purple-200 flex flex-col flex-1 min-h-0">
                            
-                           <div className="w-full p-4 md:p-8 xl:p-12 flex flex-col flex-1 min-h-0">
+                           {/* Panel: Rumpang (Full Width) */}
+                           <div className="w-full p-4 md:p-8 xl:p-12 flex flex-col min-h-0">
                                
                                <div className="bg-purple-100 p-4 md:p-6 xl:p-8 rounded-xl mb-4 xl:mb-8 text-center border-2 border-dashed border-purple-300 flex-shrink-0"
                                     onDragOver={(e) => { e.preventDefault(); }}
@@ -1447,31 +1448,30 @@
             }
 
             return (
-                <div className="flex flex-col h-full w-full max-w-7xl mx-auto pb-4">
+                <div className="flex flex-col h-full w-full max-w-7xl mx-auto flex-1 min-h-0 pb-4">
                    <div className="bg-blue-100 text-blue-800 p-3 xl:p-4 rounded-xl text-center font-bold text-sm md:text-base xl:text-xl border-l-4 border-blue-500 shadow-sm flex items-center justify-center gap-3 mb-4 flex-shrink-0">
                      <Icons.BookOpen className="w-5 h-5 xl:w-7 xl:h-7" /> Kerjakan tugas proyek bersama kelompokmu!
                    </div>
 
                    <div className="bg-white/95 rounded-3xl shadow-xl border-2 border-red-200 overflow-hidden flex flex-col md:flex-row flex-1 min-h-0">
                         {/* Panel Kiri: Cerita Masalah */}
-                        <div className="md:w-5/12 bg-red-50 p-4 md:p-6 xl:p-10 border-b md:border-b-0 md:border-r border-red-200 flex flex-col overflow-y-auto custom-scrollbar">
-                            <h3 className="font-black text-red-800 mb-3 xl:mb-5 flex items-center gap-3 text-base md:text-lg xl:text-2xl">
+                        <div className="md:w-5/12 bg-red-50 p-4 md:p-6 xl:p-10 border-b md:border-b-0 md:border-r border-red-200 flex flex-col min-h-0 overflow-y-auto custom-scrollbar">
+                            <h3 className="font-black text-red-800 mb-3 xl:mb-5 flex items-center gap-3 text-base md:text-lg xl:text-2xl flex-shrink-0">
                                 <Icons.BookOpen className="w-5 h-5 md:w-6 md:h-6 xl:w-8 xl:h-8" /> {data.stimulusTitle}
                             </h3>
-                            <div className="text-gray-700 text-sm md:text-base xl:text-xl whitespace-pre-wrap leading-relaxed font-medium bg-white p-4 md:p-6 xl:p-8 rounded-2xl border border-red-100 shadow-sm mb-6">
+                            <div className="text-gray-700 text-sm md:text-base xl:text-xl whitespace-pre-wrap leading-relaxed font-medium bg-white p-4 md:p-6 xl:p-8 rounded-2xl border border-red-100 shadow-sm mb-6 flex-1">
                                 {data.stimulusText}
                             </div>
 
-                            <div className="bg-yellow-100 p-5 xl:p-8 rounded-2xl border-2 border-yellow-300 mt-auto shadow-sm">
+                            <div className="bg-yellow-100 p-5 xl:p-8 rounded-2xl border-2 border-yellow-300 mt-auto shadow-sm flex-shrink-0">
                                 <h4 className="font-black text-yellow-800 mb-2 xl:mb-4 text-sm md:text-base xl:text-2xl">{data.tasks.t3.title}</h4>
                                 <p className="text-xs md:text-sm xl:text-xl text-yellow-900 font-bold leading-relaxed">{data.tasks.t3.desc}</p>
                             </div>
                         </div>
 
                         {/* Panel Kanan: Form Proyek */}
-                        <div className="md:w-7/12 p-4 md:p-6 xl:p-10 flex flex-col bg-white overflow-y-auto custom-scrollbar">
-                            
-                            <div className="space-y-4 xl:space-y-8 flex-grow">
+                        <div className="md:w-7/12 p-4 md:p-6 xl:p-10 flex flex-col bg-white min-h-0">
+                            <div className="space-y-4 xl:space-y-8 flex-grow overflow-y-auto custom-scrollbar pr-2">
                                 {/* Langkah 1 */}
                                 <div>
                                     <div className="border-b-2 border-gray-100 pb-2 xl:pb-4 mb-3 xl:mb-5">
@@ -1505,7 +1505,7 @@
                                 </div>
                             </div>
 
-                            <div className="pt-5 xl:pt-8 flex justify-end flex-shrink-0 border-t border-gray-100 mt-4 xl:mt-8">
+                            <div className="pt-4 xl:pt-6 flex justify-end flex-shrink-0 border-t border-gray-100 mt-4">
                                 <button onClick={handleSubmitProject} className="bg-red-500 hover:bg-red-600 text-white font-black py-4 px-10 xl:py-5 xl:px-14 rounded-2xl text-base md:text-lg xl:text-2xl shadow-[0_6px_0_#b91c1c] active:shadow-none active:translate-y-2 transition-all flex items-center justify-center gap-3 w-full md:w-auto">
                                     <Icons.Save className="w-5 h-5 md:w-6 md:h-6 xl:w-8 xl:h-8" /> Simpan Rencana Proyek
                                 </button>
@@ -1540,7 +1540,7 @@
             };
 
             return (
-                <div className="flex flex-col items-center gap-6 xl:gap-10 animate-fade-in py-4 w-full">
+                <div className="flex flex-col items-center justify-center gap-6 xl:gap-10 animate-fade-in w-full flex-1">
                   <div className="text-center bg-white/90 p-6 md:p-10 xl:p-14 rounded-3xl shadow-lg w-full max-w-2xl xl:max-w-4xl border-2 border-white">
                     <Icons.Award className="w-20 h-20 md:w-28 md:h-28 xl:w-40 xl:h-40 text-yellow-500 mx-auto animate-bounce-slow" />
                     <h2 className="text-3xl md:text-5xl xl:text-7xl font-black text-gray-800 mt-4 xl:mt-8">SELAMAT!</h2>
@@ -1573,7 +1573,7 @@
 
         function ReflectionSection({ question, value, onChange, onNext }) {
             return (
-                <div className="bg-white/95 p-8 md:p-12 xl:p-16 rounded-3xl shadow-xl text-center space-y-6 xl:space-y-8 border border-purple-100 max-w-4xl mx-auto animate-fade-in mt-10">
+                <div className="bg-white/95 p-8 md:p-12 xl:p-16 rounded-3xl shadow-xl text-center space-y-6 xl:space-y-8 border border-purple-100 w-full max-w-5xl mx-auto animate-fade-in my-auto">
                   <div className="w-20 h-20 xl:w-28 xl:h-28 bg-purple-100 rounded-full flex items-center justify-center mx-auto text-4xl xl:text-6xl shadow-inner">📝</div>
                   <div>
                     <h3 className="text-2xl md:text-3xl xl:text-5xl font-black text-purple-800 mb-3 xl:mb-5 uppercase tracking-wider">Refleksi Akhir</h3>
